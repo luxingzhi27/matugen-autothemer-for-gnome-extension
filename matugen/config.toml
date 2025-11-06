@@ -1,0 +1,41 @@
+# 这是一个 matugen 配置文件 (config.toml)
+# 占位符 './templates/' 代表模板的源目录
+# 占位符 '/./colors-apply.sh' 代表 QML 脚本中的 'colorsApplyScript'
+
+[config]
+#... 可以在这里添加 matugen 的全局配置...
+
+# --- GTK ---
+# 源 JSON 'gtk' 块被拆分为 gtk3 和 gtk4
+[templates.gtk3]
+input_path = './templates/gtk.css'
+output_path = '~/.config/gtk-3.0/gtk.css'
+# post_hook 应用于此模板块 
+#post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3'
+
+[templates.gtk4]
+input_path = './templates/gtk.css'
+output_path = '~/.config/gtk-4.0/gtk.css'
+# post_hook = 'gsettings set org.gnome.desktop.interface color-scheme prefer-{{mode}}'
+
+
+# --- Qt ---
+# 源 JSON 'qt' 块被拆分为 qt5 和 qt6
+[templates.qt5]
+input_path = './templates/qtct.conf'
+output_path = '~/.config/qt5ct/colors/noctalia.conf'
+
+[templates.qt6]
+input_path = './templates/qtct.conf'
+output_path = '~/.config/qt6ct/colors/noctalia.conf'
+
+# --- KColorScheme ---
+[templates.kcolorscheme]
+input_path = './templates/kcolorscheme.colors'
+output_path = '~/.local/share/color-schemes/noctalia.colors'
+
+
+# --- VSCode ---
+[templates.code]
+input_path = './templates/code.json'
+output_path = '~/.vscode/extensions/hyprluna.hyprluna-theme-1.0.2/themes/hyprluna.json'

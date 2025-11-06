@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.matugen" path="/org/gnome/shell/extensions/matugen/">
+    <key name="matugen-path" type="s">
+      <default>'/usr/bin/matugen'</default>
+      <summary>Path to the matugen executable</summary>
+      <description>
+        Absolute path to the matugen binary used to generate Material You color palettes.
+      </description>
+    </key>
+    <key name="matugen-flavor" type="s">
+      <default>'scheme-tonal-spot'</default>
+      <summary>Matugen scheme type</summary>
+      <description>
+        Value passed to matugen --type (for example scheme-tonal-spot, scheme-vibrant).
+      </description>
+    </key>
+    <key name="matugen-config" type="s">
+      <default>''</default>
+      <summary>Matugen config file</summary>
+      <description>
+        Optional path to a matugen configuration file that will be supplied via --config.
+      </description>
+    </key>
+    <key name="color-mode" type="s">
+      <default>'dark'</default>
+      <summary>Matugen generation mode</summary>
+      <description>
+        Controls whether the extension runs matugen in light or dark mode (accepted values: light, dark).
+      </description>
+    </key>
+  </schema>
+</schemalist>

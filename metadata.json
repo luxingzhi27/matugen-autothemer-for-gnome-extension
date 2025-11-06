@@ -1,0 +1,8 @@
+{
+  "uuid": "matugen-autothemer@material-you",
+  "name": "Matugen Auto-Themer",
+  "description": "Generates GTK and Qt themes from your wallpaper using Matugen.",
+  "version": 1,
+  "settings-schema": "org.gnome.shell.extensions.matugen",
+  "shell-version": ["49"]
+}
