@@ -5,6 +5,7 @@
 Matugen Auto-Themer is a GNOME Shell extension that watches wallpaper changes or manual mode switches (light/dark) and automatically runs [`matugen`](https://github.com/InioX/matugen). The extension:
 
 - Picks the wallpaper path for the selected mode.
+- Provides a panel menu button for quick access (switch light/dark mode, choose scheme, rerun Matugen, open preferences).
 - Calls `matugen image … -t <scheme> -c <config>` using either your custom config or the bundled `matugen/config.toml`.
 - Applies GNOME interface tweaks after generation by running:
   - `gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-<mode>` (light mode uses `adw-gtk3`).
@@ -23,21 +24,17 @@ Before enabling, compile the schema:
 glib-compile-schemas schemas
 ```
 
-Then copy or symlink the folder into `~/.local/share/gnome-shell/extensions/` and reload GNOME Shell.
-
----
-
 ## 中文
 
-Matugen 自动主题插件是一个 GNOME Shell 扩展，用于监听壁纸变更或手动切换明/暗模式，并自动执行 [`matugen`](https://github.com/InioX/matugen)。插件会：
+
+插件会：
 
 - 根据当前选择的模式获取壁纸路径。
+- 在面板上提供快速按钮，可切换明/暗模式、选择方案、重新执行 Matugen 并打开首选项。
 - 通过 `matugen image … -t <scheme> -c <config>` 运行 matugen，优先使用用户设置的配置文件，若无则使用内置的 `matugen/config.toml`。
 - 在生成后执行以下命令以保持 GNOME 外观同步：
   - `gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-<mode>`（亮色模式使用 `adw-gtk3`）。
   - `gsettings set org.gnome.desktop.interface color-scheme prefer-<mode>`。
-
-在首选项界面中可以配置：
 
 - matugen 可执行文件路径
 - 可选的配置文件路径（未配置时使用内置配置）

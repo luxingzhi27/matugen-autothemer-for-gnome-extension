@@ -4,15 +4,15 @@ import Gtk from 'gi://Gtk';
 import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 const FLAVORS = [
-    'scheme-tonal-spot',
-    'scheme-vibrant',
-    'scheme-expressive',
-    'scheme-fruit-salad',
-    'scheme-content',
-    'scheme-monochrome',
-    'scheme-neutral',
-    'scheme-rainbow',
-    'scheme-fidelity',
+    'tonal-spot',
+    'vibrant',
+    'expressive',
+    'fruit-salad',
+    'content',
+    'monochrome',
+    'neutral',
+    'rainbow',
+    'fidelity',
 ];
 
 const MODES = [
