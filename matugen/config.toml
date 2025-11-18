@@ -43,13 +43,13 @@ output_path = '~/.config/kdeglobals'
 [templates.fuzzel]
 input_path = './templates/fuzzel.conf'
 output_path = '~/.config/fuzzel/themes/noctalia'
-post_hook = './bin/colors-apply.sh fuzzel'
+post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@material-you/matugen/bin/colors-apply.sh fuzzel'
 
 # --- Pywalfox ---
 [templates.pywalfox]
 input_path = './templates/pywalfox.json'
 output_path = '~/.cache/wal/colors.json'
-post_hook = './bin/colors-apply.sh pywalfox'
+post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@material-you/matugen/bin/colors-apply.sh pywalfox'
 
 # --- Discord (Vesktop) ---
 [templates.discord_vesktop]
@@ -90,13 +90,13 @@ output_path = '~/.config/discord/themes/noctalia.theme.css'
 [templates.vicinae]
 input_path = './templates/vicinae.toml'
 output_path = '~/.local/share/vicinae/themes/matugen.toml'
-post_hook = './bin/colors-apply.sh vicinae'
+post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@material-you/matugen/bin/colors-apply.sh vicinae'
 
 # --- Walker ---
 [templates.walker]
 input_path = './templates/walker.css'
 output_path = '~/.config/walker/themes/noctalia/style.css'
-post_hook = './bin/colors-apply.sh walker'
+post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@material-you/matugen/bin/colors-apply.sh walker'
 
 # --- VSCode ---
 [templates.code]
@@ -110,3 +110,8 @@ output_path = '~/.config/zed/themes/matugen.json'
 [templates.ghostty]
 input_path = './templates/Terminal/ghostty'
 output_path = '~/.config/ghostty/themes/noctalia'
+
+[templates.gnomeshell]
+input_path = './templates/gnome-shell-colors.scss'
+output_path= './templates/gnome-shell-sass/_colors.scss'
+post_hook = "sassc ~/.local/share/gnome-shell/extensions/matugen-autothemer@material-you/matugen/templates/gnome-shell.scss ~/.local/share/themes/Material/gnome-shell/gnome-shell.css && gsettings set org.gnome.desktop.interface color-scheme prefer-{{mode | lower_case}}"

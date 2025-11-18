@@ -424,6 +424,20 @@ export default class MatugenAutoThemer extends Extension {
       logError(error, "Matugen Auto-Themer: failed to set gtk-theme");
     }
 
+    //先切换到相反的color-scheme，在切回到正确的，以确保主题样式表被刷新
+    const oppositeScheme = mode === "dark" ? "prefer-light" : "prefer-dark";
+    try {
+      await this._runProcess([
+        "gsettings",
+        "set",
+        "org.gnome.desktop.interface",
+        "color-scheme",
+        oppositeScheme,
+      ]);
+    } catch (error) {
+      logError(error, "Matugen Auto-Themer: failed to set color-scheme");
+    }
+
     try {
       await this._runProcess([
         "gsettings",

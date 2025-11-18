@@ -1,0 +1,179 @@
+/* * Matugen GNOME Shell Color Template (Final Fixed v2)
+ * 修复了 Error: Undefined variable: "$-base-color-light"
+ */
+
+// 1. 引入基础调色板 (防止 undefined variable 报错)
+@import '_palette.scss';
+
+// 2. Matugen 生成的颜色 (Values adapt to mode automatically)
+$m-primary: #8f4a50;
+$m-on-primary: #ffffff;
+$m-primary-container: #ffdadb;
+$m-on-primary-container: #3b0711;
+
+$m-secondary: #765658;
+$m-on-secondary: #ffffff;
+$m-secondary-container: #ffdadb;
+$m-on-secondary-container: #2c1517;
+
+$m-tertiary: #775930;
+$m-on-tertiary: #ffffff;
+
+$m-error: #ba1a1a;
+$m-on-error: #ffffff;
+
+$m-surface: #fff8f7;
+$m-on-surface: #22191a;
+$m-surface-variant: #f4ddde;
+$m-on-surface-variant: #524344;
+$m-outline: #857373;
+
+$m-surface-container: #fceaea;
+$m-surface-container-low: #fff0f0;
+$m-surface-container-high: #f6e4e4;
+$m-surface-container-highest: #f0dedf;
+
+// 3. 核心配置变量
+$variant: 'light';
+
+// 4. 覆盖 GNOME 默认调色板 (Palette Overrides)
+// 蓝色系 (Blue) -> Primary
+$blue_1: mix(#ffffff, $m-primary, 40%);
+$blue_2: mix(#ffffff, $m-primary, 20%);
+$blue_3: $m-primary;
+$blue_4: mix(#000000, $m-primary, 20%);
+$blue_5: mix(#000000, $m-primary, 40%);
+
+// 绿色系 (Green) -> Tertiary
+$green_1: mix(#ffffff, $m-tertiary, 40%);
+$green_2: mix(#ffffff, $m-tertiary, 20%);
+$green_3: $m-tertiary;
+$green_4: mix(#000000, $m-tertiary, 20%);
+$green_5: mix(#000000, $m-tertiary, 40%);
+
+// 橙色/黄色系 (Orange/Yellow) -> Secondary
+$orange_1: mix(#ffffff, $m-secondary, 40%);
+$orange_2: mix(#ffffff, $m-secondary, 20%);
+$orange_3: $m-secondary;
+$orange_4: mix(#000000, $m-secondary, 20%);
+$orange_5: mix(#000000, $m-secondary, 40%);
+
+$yellow_1: $orange_1; $yellow_2: $orange_2; $yellow_3: $orange_3; $yellow_4: $orange_4; $yellow_5: $orange_5;
+
+// 红色系 (Red) -> Error
+$red_1: mix(#ffffff, $m-error, 40%);
+$red_2: mix(#ffffff, $m-error, 20%);
+$red_3: $m-error;
+$red_4: mix(#000000, $m-error, 20%);
+$red_5: mix(#000000, $m-error, 40%);
+
+// 紫色/棕色系
+$purple_1: mix(#ffffff, $m-primary-container, 40%);
+$purple_2: mix(#ffffff, $m-primary-container, 20%);
+$purple_3: $m-primary-container;
+$purple_4: mix(#000000, $m-primary-container, 20%);
+$purple_5: mix(#000000, $m-primary-container, 40%);
+
+$brown_1: mix(#ffffff, $m-secondary-container, 40%);
+$brown_2: mix(#ffffff, $m-secondary-container, 20%);
+$brown_3: $m-secondary-container;
+$brown_4: mix(#000000, $m-secondary-container, 20%);
+$brown_5: mix(#000000, $m-secondary-container, 40%);
+
+// 强调色变量
+$accent_color: $m-primary;
+$accent_fg_color: $m-on-primary;
+$accent_borders_color: transparentize($accent_color, 0.5);
+
+// 5. 语义化功能变量 (Semantic Variables)
+$destructive_bg_color: $m-error;
+$destructive_fg_color: $m-on-error;
+$destructive_color: $destructive_bg_color;
+
+$success_bg_color: $m-tertiary;
+$success_fg_color: $m-on-tertiary;
+$success_color: $success_bg_color;
+
+$warning_bg_color: $m-secondary-container;
+$warning_fg_color: $m-on-secondary-container;
+$warning_color: $orange_3;
+
+$error_bg_color: $m-error;
+$error_fg_color: $m-on-error;
+$error_color: $error_bg_color;
+
+$link_color: $m-secondary;
+$link_visited_color: transparentize($link_color, 0.4);
+
+// [关键修复] 定义 _base_color_light
+// 用于顶栏录屏/共享指示器的文字颜色（背景通常是红色/橙色）
+$_base_color_light: #ffffff;
+
+// 6. 全局主题变量
+$base_color: $m-surface;
+$bg_color: $m-surface;
+$fg_color: $m-on-surface;
+
+$selected_fg_color: $m-on-primary;
+$selected_bg_color: $m-primary;
+
+// 7. 混合宏配置
+$background_mix_factor: if($variant == 'light', 12%, 9%); 
+$border_opacity: if($variant == 'light', 0.2, 0.4); 
+$focus_border_opacity: if($variant == 'light', 0.3, 0.2);
+
+$shadow_color: rgba(0,0,0,0.2);
+$text_shadow_color: if($variant == 'light', transparent, rgba(0,0,0,0.4));
+
+// High Contrast
+$contrast: 'normal' !default;
+@if $contrast == 'high' {
+    $border_opacity: .5;
+    $focus_border_opacity: .1;
+    $shadow_color: transparent;
+    $text_shadow_color: transparent;
+}
+
+// 8. UI 组件颜色映射
+$osd_bg_color: $m-surface-container;
+$osd_fg_color: $m-on-surface;
+
+$panel_bg_color: $m-surface;
+$panel_fg_color: $m-on-surface;
+$panel_border_color: if($variant == 'light', transparentize($m-outline, 0.8), transparent);
+
+$card_bg_color: $m-surface-container-low;
+$card_shadow_color: rgba(0, 0, 0, 0.15);
+$card_shadow_border_color: transparent;
+
+$borders_color: transparentize($m-outline, 0.6);
+$outer_borders_color: if($variant == 'light', darken($bg_color, 10%), lighten($bg_color, 10%));
+
+$osd_borders_color: transparentize($m-outline, 0.7);
+$osd_outer_borders_color: transparent;
+
+// 9. 系统与状态颜色
+$system_base_color: $m-surface;
+$system_fg_color: $m-on-surface;
+$system_bg_color: if($variant == 'light', darken($m-surface, 5%), lighten($m-surface, 5%));
+$system_borders_color: $borders_color;
+
+$system_insensitive_fg_color: mix($system_bg_color, $system_fg_color, 37%);
+$system_overlay_bg_color: if($variant == 'light', rgba(255,255,255,0.85), rgba(0,0,0,0.75));
+
+$insensitive_fg_color: mix($fg_color, $bg_color, 50%);
+$insensitive_bg_color: mix($bg_color, $base_color, 60%);
+$insensitive_borders_color: mix($borders_color, $base_color, 60%);
+
+$checked_bg_color: mix($m-primary, $bg_color, 25%);
+$checked_fg_color: $fg_color;
+
+$hover_bg_color: if($variant == 'light', darken($bg_color, 5%), lighten($bg_color, 8%));
+$hover_fg_color: $fg_color;
+
+$active_bg_color: if($variant == 'light', darken($bg_color, 10%), lighten($bg_color, 12%));
+$active_fg_color: $fg_color;
+
+// 10. 特殊组件颜色
+$entry_bg_color: if($variant == 'light', darken($bg_color, 5%), lighten($bg_color, 5%));
+$menu_bg_color: $bg_color;
