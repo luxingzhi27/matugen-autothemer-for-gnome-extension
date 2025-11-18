@@ -5,5 +5,5 @@
   "version": 1,
   "settings-schema": "org.gnome.shell.extensions.matugen",
   "shell-version": ["49"],
-  "github-url":"https://github.com/luxingzhi27/matugen-autothemer-for-gnome-extension" 
+  "url":"https://github.com/luxingzhi27/matugen-autothemer-for-gnome-extension" 
 }

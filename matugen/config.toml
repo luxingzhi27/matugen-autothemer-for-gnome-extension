@@ -51,41 +51,6 @@ input_path = './templates/pywalfox.json'
 output_path = '~/.cache/wal/colors.json'
 post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@material-you/matugen/bin/colors-apply.sh pywalfox'
 
-# --- Discord (Vesktop) ---
-[templates.discord_vesktop]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/vesktop/themes/noctalia.theme.css'
-
-# --- Discord (Webcord) ---
-[templates.discord_webcord]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/webcord/themes/noctalia.theme.css'
-
-# --- Discord (Armcord) ---
-[templates.discord_armcord]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/armcord/themes/noctalia.theme.css'
-
-# --- Discord (Equibop) ---
-[templates.discord_equibop]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/equibop/themes/noctalia.theme.css'
-
-# --- Discord (Lightcord) ---
-[templates.discord_lightcord]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/lightcord/themes/noctalia.theme.css'
-
-# --- Discord (Dorion) ---
-[templates.discord_dorion]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/dorion/themes/noctalia.theme.css'
-
-# --- Discord (Vencord) ---
-[templates.discord_vencord]
-input_path = './templates/vesktop.css'
-output_path = '~/.config/discord/themes/noctalia.theme.css'
-
 # --- Vicinae ---
 [templates.vicinae]
 input_path = './templates/vicinae.toml'

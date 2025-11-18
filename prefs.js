@@ -118,9 +118,12 @@ export default class MatugenPreferences extends ExtensionPreferences {
                 flavorRow.set_selected(idx);
             }
         });
-        window.connect('destroy', () => {
+
+        window.connect('close-request', () => {
             settings.disconnect(flavorSignalId);
             settings.disconnect(modeSignalId);
+            // Return false to continue closing the window
+            return false; 
         });
         integrationGroup.add(flavorRow);
     }

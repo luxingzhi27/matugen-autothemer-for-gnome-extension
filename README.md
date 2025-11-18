@@ -4,6 +4,9 @@
 
 **Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3\) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system.
 
+### Declaration
+Some of Matugen's templates and configurations use the configuration of Noctalia Shell.
+
 ### **🎨 Supported Theming Scope**
 
 This extension goes beyond just the shell. Based on the configuration, it generates and applies themes for:
@@ -15,7 +18,6 @@ This extension goes beyond just the shell. Based on the configuration, it genera
 * **Launchers**: Fuzzel, Walker.  
 * **Applications**:  
   * VSCode & Zed Editor  
-  * Discord (Vesktop, Webcord, etc.)  
   * Firefox (via Pywalfox)  
   * Vicinae
 
@@ -67,6 +69,9 @@ QT\_QPA\_PLATFORMTHEME=qt5ct
 
 **Matugen Auto-Themer** 是一个强大的 GNOME Shell 扩展，旨在为您的 Linux 桌面带来全局的 Material You (Material Design 3\) 动态配色体验。它会监听壁纸更换或明暗模式的切换，并自动调用 [Matugen](https://github.com/InioX/matugen) 生成并应用统一的配色方案。
 
+### 声明
+matugen的部分模板和配置使用了noctalia shell的配置。
+
 ### **🎨 自动配色范围**
 
 本插件不仅限于美化 GNOME Shell，它还可以根据配置文件为以下组件生成并应用主题：
@@ -78,7 +83,6 @@ QT\_QPA\_PLATFORMTHEME=qt5ct
 * **启动器**: Fuzzel, Walker。  
 * **常用应用**:  
   * VSCode 和 Zed 编辑器  
-  * Discord 客户端 (Vesktop, Webcord 等)  
   * Firefox 浏览器 (需配合 Pywalfox)  
   * Vicinae
 
