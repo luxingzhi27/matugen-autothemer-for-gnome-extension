@@ -1,8 +1,10 @@
 # **Matugen Auto-Themer for GNOME**
+![](./pictures/example.png)
 
 ## **English Description**
 
 **Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3\) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system.
+
 
 ### Declaration
 Some of Matugen's templates and configurations use the configuration of Noctalia Shell.
