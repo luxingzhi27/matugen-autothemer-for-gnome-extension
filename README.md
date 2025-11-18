@@ -1,50 +1,130 @@
-# Matugen Auto-Themer / Matugen 自动主题插件
+# **Matugen Auto-Themer for GNOME**
 
-## English
+[中文说明](https://www.google.com/search?q=%23%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E) | [English Description](https://www.google.com/search?q=%23english-description)
 
-Matugen Auto-Themer is a GNOME Shell extension that watches wallpaper changes or manual mode switches (light/dark) and automatically runs [`matugen`](https://github.com/InioX/matugen). The extension:
+## **\<a name="english-description"\>\</a\>English Description**
 
-- Picks the wallpaper path for the selected mode.
-- Provides a panel menu button for quick access (switch light/dark mode, choose scheme, rerun Matugen, open preferences).
-- Calls `matugen image … -t <scheme> -c <config>` using either your custom config or the bundled `matugen/config.toml`.
-- Applies GNOME interface tweaks after generation by running:
-  - `gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-<mode>` (light mode uses `adw-gtk3`).
-  - `gsettings set org.gnome.desktop.interface color-scheme prefer-<mode>`.
+**Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3\) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system.
 
-Use the preferences dialog to set:
+### **🎨 Supported Theming Scope**
 
-- Matugen executable path
-- Optional config path (falls back to the bundled config)
-- Scheme type (`scheme-*` values accepted by Matugen)
-- Color mode (light or dark)
+This extension goes beyond just the shell. Based on the configuration, it generates and applies themes for:
 
-Before enabling, compile the schema:
+* **GNOME Shell**: Full Material You coloring for the top panel, quick settings, overview, and popups.  
+* **GTK 4 & GTK 3**: Applies colors to Libadwaita apps and legacy GTK apps (requires adw-gtk3).  
+* **Qt 5 & Qt 6**: Themed via qt5ct and qt6ct.  
+* **Terminals**: Ghostty.  
+* **Launchers**: Fuzzel, Walker.  
+* **Applications**:  
+  * VSCode & Zed Editor  
+  * Discord (Vesktop, Webcord, etc.)  
+  * Firefox (via Pywalfox)  
+  * Vicinae
 
-```fish
-glib-compile-schemas schemas
-```
+### **🛠️ Prerequisites & Setup (Important)**
 
-## 中文
+Before enabling the extension, you must perform a few manual steps to ensure the themes apply correctly.
 
+#### **1\. Install Dependencies**
 
-插件会：
+Ensure you have the following installed on your system:
 
-- 根据当前选择的模式获取壁纸路径。
-- 在面板上提供快速按钮，可切换明/暗模式、选择方案、重新执行 Matugen 并打开首选项。
-- 通过 `matugen image … -t <scheme> -c <config>` 运行 matugen，优先使用用户设置的配置文件，若无则使用内置的 `matugen/config.toml`。
-- 在生成后执行以下命令以保持 GNOME 外观同步：
-  - `gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-<mode>`（亮色模式使用 `adw-gtk3`）。
-  - `gsettings set org.gnome.desktop.interface color-scheme prefer-<mode>`。
+* matugen (The color generation tool)  
+* sassc (Required to compile the GNOME Shell theme)  
+* adw-gtk3 theme (For legacy GTK application styling)  
+* qt5ct and qt6ct (For Qt application styling)
 
-- matugen 可执行文件路径
-- 可选的配置文件路径（未配置时使用内置配置）
-- 颜色方案类型（`scheme-*` 格式的 matugen 类型）
-- 明/暗模式
+#### **2\. Prepare the GNOME Shell Theme Folder**
 
-启用前请先编译 GSettings Schema：
+The extension compiles the shell theme into a specific local directory. You must create this directory manually:
 
-```fish
-glib-compile-schemas schemas
-```
+mkdir \-p \~/.local/share/themes/Material/gnome-shell
 
-随后将插件目录复制或软链接到 `~/.local/share/gnome-shell/extensions/` 并重新载入 GNOME Shell。
+#### **3\. Apply Base Themes**
+
+Open **GNOME Tweaks** (or use gsettings) and set the following:
+
+1. **Shell Theme**: Select Material (User Themes extension required).  
+2. **Legacy Applications**: Select adw-gtk3 (or adw-gtk3-dark).
+
+#### **4\. Configure Qt**
+
+To ensure Qt apps use the generated colors, add the following environment variable to your /etc/environment or shell profile:
+
+QT\_QPA\_PLATFORMTHEME=qt5ct
+
+### **🚀 Usage**
+
+1. **Install the Extension**: Copy the extension folder to \~/.local/share/gnome-shell/extensions/.  
+2. **Compile Schemas**:  
+   glib-compile-schemas schemas
+
+3. **Enable**: Restart GNOME Shell (Log out/in) and enable the extension.  
+4. **Customize**:  
+   * Use the **Panel Indicator** to toggle between Light/Dark mode.  
+   * Select your preferred **Color Flavor** (e.g., Tonal Spot, Vibrant, Fruit Salad).  
+   * Change your **Wallpaper**, and the entire system theme will update automatically\!
+
+## **\<a name="中文说明"\>\</a\>中文说明**
+
+**Matugen Auto-Themer** 是一个强大的 GNOME Shell 扩展，旨在为您的 Linux 桌面带来全局的 Material You (Material Design 3\) 动态配色体验。它会监听壁纸更换或明暗模式的切换，并自动调用 [Matugen](https://github.com/InioX/matugen) 生成并应用统一的配色方案。
+
+### **🎨 自动配色范围**
+
+本插件不仅限于美化 GNOME Shell，它还可以根据配置文件为以下组件生成并应用主题：
+
+* **GNOME Shell**: 顶栏、快速设置面板、概览和弹出菜单的完整 Material You 配色。  
+* **GTK 4 & GTK 3**: 适配 Libadwaita 应用及传统 GTK 应用（依赖 adw-gtk3）。  
+* **Qt 5 & Qt 6**: 通过 qt5ct 和 qt6ct 应用配色。  
+* **终端模拟器**: Ghostty。  
+* **启动器**: Fuzzel, Walker。  
+* **常用应用**:  
+  * VSCode 和 Zed 编辑器  
+  * Discord 客户端 (Vesktop, Webcord 等)  
+  * Firefox 浏览器 (需配合 Pywalfox)  
+  * Vicinae
+
+### **🛠️ 前置要求与设置（重要）**
+
+在启用插件之前，您必须手动完成以下步骤，以确保存储路径存在且主题能够被正确应用。
+
+#### **1\. 安装必要的依赖**
+
+请确保您的系统中已安装以下工具或主题：
+
+* matugen (核心配色生成工具)  
+* sassc (用于编译 GNOME Shell 主题样式表)  
+* adw-gtk3 主题 (用于统一 GTK3 应用的样式)  
+* qt5ct 和 qt6ct (用于管理 Qt 应用样式)
+
+#### **2\. 创建 GNOME Shell 主题目录**
+
+插件会将编译好的 Shell 主题输出到本地主题目录，您需要手动创建该文件夹：
+
+mkdir \-p \~/.local/share/themes/Material/gnome-shell
+
+#### **3\. 应用基础主题**
+
+打开 **GNOME Tweaks（优化）** 工具（或使用 gsettings）进行以下设置：
+
+1. **Shell 主题 (Shell Theme)**: 选择 Material（需要先启用 User Themes 扩展）。  
+2. **过时应用程序 (Legacy Applications)**: 选择 adw-gtk3（或 adw-gtk3-dark）。
+
+#### **4\. 配置 Qt 环境**
+
+为了让 Qt 应用读取生成的颜色配置，请将以下环境变量添加到您的 /etc/environment 或 Shell 配置文件中：
+
+QT\_QPA\_PLATFORMTHEME=qt5ct
+
+### **🚀 使用方法**
+
+1. **安装扩展**: 将插件目录复制到 \~/.local/share/gnome-shell/extensions/。  
+2. 编译 Schema:  
+   进入扩展目录并运行：  
+   glib-compile-schemas schemas
+
+3. **启用扩展**: 重启 GNOME Shell（注销并重新登录），然后在扩展管理器中启用它。  
+4. **个性化**:  
+   * 点击顶栏的 **Matugen 图标** 快速切换 明亮/暗黑 模式。  
+   * 在菜单中选择喜欢的 **配色风格 (Scheme type)**（如：Tonal Spot, Vibrant 等）。  
+   * **更换壁纸**，系统配色将即刻自动更新！
