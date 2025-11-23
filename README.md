@@ -6,7 +6,7 @@
 
 **Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3\) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system.
 
-### **The version of matugen must be at least 3.0.0!!!!!**
+### **WARNING:The version of matugen must be at least 3.0.0!!!!!**
 
 ### Declaration
 
@@ -86,7 +86,7 @@ To ensure VScode uses the generated colors, you need to install the "HyprLuna Ma
 ## **中文说明**
 
 **Matugen Auto-Themer** 是一个强大的 GNOME Shell 扩展，旨在为您的 Linux 桌面带来全局的 Material You (Material Design 3\) 动态配色体验。它会监听壁纸更换或明暗模式的切换，并自动调用 [Matugen](https://github.com/InioX/matugen) 生成并应用统一的配色方案。
-## **matugen的版本至少为3.0.0!!!!!**
+## **警告：matugen的版本至少为3.0.0!!!!!**
 
 ### 声明
 - matugen的部分模板和配置使用了[noctalia shell](https://github.com/noctalia-dev/noctalia-shell)的配置。
