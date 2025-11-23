@@ -6,9 +6,12 @@
 
 **Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3\) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system.
 
+
 ### Declaration
 
-Some of Matugen's templates and configurations use the configuration of [Noctalia Shell](https://github.com/noctalia-dev/noctalia-shell).
+- Some of Matugen's templates and configurations use the configuration of [Noctalia Shell](https://github.com/noctalia-dev/noctalia-shell).
+- **The version of matugen must be at least 3.0.0!!!!!**
+
 
 ### **🎨 Supported Theming Scope**
 
@@ -57,7 +60,7 @@ Open **GNOME Tweaks** (or use gsettings) and set the following:
 To ensure Qt apps use the generated colors, add the following environment variable to your /etc/environment or shell profile:
 
 ```
-QT\_QPA\_PLATFORMTHEME=qt5ct
+QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
 And you also need to set the color scheme in qt5ct/qt6ct to "noctalia". To get the best experience, you can use the [darkly](https://github.com/Bali10050/Darkly) application style in qt5ct/qt6ct.
@@ -67,7 +70,7 @@ To ensure VScode uses the generated colors, you need to install the "HyprLuna Ma
 
 ### **🚀 Usage**
 
-1. **Install the Extension**: Copy the extension folder to `~/.local/share/gnome-shell/extensions/`.  
+1. **Install the Extension**: Copy the repository to `~/.local/share/gnome-shell/extensions/` and rename it to `matugen-autothemer@material-you`.  
 2. **Compile Schemas**:  
    ```
    glib-compile-schemas schemas
@@ -84,7 +87,9 @@ To ensure VScode uses the generated colors, you need to install the "HyprLuna Ma
 **Matugen Auto-Themer** 是一个强大的 GNOME Shell 扩展，旨在为您的 Linux 桌面带来全局的 Material You (Material Design 3\) 动态配色体验。它会监听壁纸更换或明暗模式的切换，并自动调用 [Matugen](https://github.com/InioX/matugen) 生成并应用统一的配色方案。
 
 ### 声明
-matugen的部分模板和配置使用了[noctalia shell](https://github.com/noctalia-dev/noctalia-shell)的配置。
+- matugen的部分模板和配置使用了[noctalia shell](https://github.com/noctalia-dev/noctalia-shell)的配置。
+- **matugen的版本至少为3.0.0!!!!!**
+
 
 ### **🎨 自动配色范围**
 
@@ -118,7 +123,7 @@ matugen的部分模板和配置使用了[noctalia shell](https://github.com/noct
 插件会将编译好的 Shell 主题输出到本地主题目录，您需要手动创建该文件夹：
 
 ```
-mkdir \-p \~/.local/share/themes/Material/gnome-shell
+mkdir -p ~/.local/share/themes/Material/gnome-shell
 ```
 
 #### **3\. 应用基础主题**
@@ -133,7 +138,7 @@ mkdir \-p \~/.local/share/themes/Material/gnome-shell
 为了让 Qt 应用读取生成的颜色配置，请将以下环境变量添加到您的 /etc/environment 或 Shell 配置文件中：
 
 ```
-QT\_QPA\_PLATFORMTHEME=qt5ct
+QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
 同时，您还需要在 qt5ct/qt6ct 中将配色方案设置为 "noctalia"。为了获得最佳体验，您可以在 qt5ct/qt6ct 中使用 [darkly](https://github.com/Bali10050/Darkly) 应用样式。
@@ -143,7 +148,7 @@ QT\_QPA\_PLATFORMTHEME=qt5ct
 
 ### **🚀 使用方法**
 
-1. **安装扩展**: 将插件目录复制到 `~/.local/share/gnome-shell/extensions/`。  
+1. **安装扩展**: 将仓库内容复制到 `~/.local/share/gnome-shell/extensions/`并改名为`matugen-autothemer@material-you`。  
 2. 编译 Schema:  
    进入扩展目录并运行：  
    ```
