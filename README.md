@@ -27,6 +27,7 @@ Based on the configuration, it generates and applies themes for:
   * **Qt 5 & Qt 6**: Themed via qt5ct/qt6ct.
   * **Terminals & Launchers**: Ghostty, Fuzzel, Walker.
   * **Applications**: VSCode, Zed Editor, Firefox (via Pywalfox), Vicinae.
+  * **[Rounded Window Corners Reborn Gnome extension](https://extensions.gnome.org/extension/7048/rounded-window-corners-reborn/)**: The Border color. 
 
 You can customize the scope further by editing the configuration file located at `~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/config.toml`.
 
@@ -113,6 +114,7 @@ After installing the extension, you must configure your system to use the genera
   * **GTK 4 & GTK 3**: 适配 Libadwaita 及传统 GTK 应用。
   * **Qt 5 & Qt 6**: 通过 qt5ct/qt6ct 适配。
   * **其他工具**: Ghostty, Fuzzel, Walker, VSCode, Firefox (Pywalfox) 等。
+  * **[Rounded Window Corners Reborn Gnome extension](https://extensions.gnome.org/extension/7048/rounded-window-corners-reborn/)**: 窗口边框颜色。
 
 您也可以通过编辑配置文件 `~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/config.toml` 来进一步自定义配色范围。
 
