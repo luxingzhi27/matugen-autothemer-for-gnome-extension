@@ -4,161 +4,170 @@
 
 ## **English Description**
 
-**Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3\) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system.
+**Matugen Auto-Themer** is a powerful GNOME Shell extension that brings Material You (Material Design 3) coloring to your entire Linux desktop. It watches for wallpaper changes or mode switches (Light/Dark) and automatically uses [Matugen](https://github.com/InioX/matugen) to generate and apply cohesive color schemes across your system. Some of the configurations come from [Noctalia Shell](https://github.com/noctalia-dev/noctalia-shell).
 
-### **WARNING:The version of matugen must be at least 3.0.0!!!!!**
+### **⚠️ Requirements & Dependencies**
 
-### Declaration
+Before installing, ensure you have the following tools installed. **The extension will not work without them.**
 
-- Some of Matugen's templates and configurations use the configuration of [Noctalia Shell](https://github.com/noctalia-dev/noctalia-shell).
-
-
+| Dependency | Description |
+| :--- | :--- |
+| **matugen(3.0.0 or later)**  | **CRITICAL.** The core color generation tool. |
+| **sassc** | Required to compile the GNOME Shell theme. |
+| **libjxl (djxl)**| Required **only** if you use `.jxl` (JPEG XL) wallpapers. |
+| **adw-gtk3** | Theme for legacy GTK applications. |
+| **qt5ct / qt6ct**| Required to theme Qt applications. |
 
 ### **🎨 Supported Theming Scope**
 
-This extension goes beyond just the shell. Based on the configuration, it generates and applies themes for:
+Based on the configuration, it generates and applies themes for:
 
-* **GNOME Shell**: Full Material You coloring for the top panel, quick settings, overview, and popups.  
-* **GTK 4 & GTK 3**: Applies colors to Libadwaita apps and legacy GTK apps (requires adw-gtk3).  
-* **Qt 5 & Qt 6**: Themed via qt5ct and qt6ct.  
-* **Terminals**: Ghostty.  
-* **Launchers**: Fuzzel, Walker.  
-* **Applications**:  
-  * VSCode & Zed Editor  
-  * Firefox (via Pywalfox)  
-  * Vicinae
+  * **GNOME Shell**: Top panel, quick settings, overview, and popups.
+  * **GTK 4 & GTK 3**: Libadwaita apps and legacy GTK apps.
+  * **Qt 5 & Qt 6**: Themed via qt5ct/qt6ct.
+  * **Terminals & Launchers**: Ghostty, Fuzzel, Walker.
+  * **Applications**: VSCode, Zed Editor, Firefox (via Pywalfox), Vicinae.
 
-### **🛠️ Prerequisites & Setup (Important)**
+You can customize the scope further by editing the configuration file located at `~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/config.toml`.
 
-Before enabling the extension, you must perform a few manual steps to ensure the themes apply correctly.
+### **📥 Installation**
 
-#### **1\. Install Dependencies**
+#### **Method 1: Automatic Install (Recommended)**
 
-Ensure you have the following installed on your system:
+You can simply run the provided installation script:
 
-* matugen (The color generation tool)  
-* sassc (Required to compile the GNOME Shell theme)  
-* adw-gtk3 theme (For legacy GTK application styling)  
-* qt5ct and qt6ct (For Qt application styling)
-
-#### **2\. Prepare the GNOME Shell Theme Folder**
-
-The extension compiles the shell theme into a specific local directory. You must create this directory manually:
-
-```
-mkdir -p ~/.local/share/themes/Material/gnome-shell
+```bash
+chmod +x install.sh
+./install.sh
 ```
 
-#### **3\. Apply Base Themes**
+#### **Method 2: Manual Install**
 
-Open **GNOME Tweaks** (or use gsettings) and set the following:
+1.  **Clone the repository**:
 
-1. **Shell Theme**: Select Material (User Themes extension required).  
-2. **Legacy Applications**: Select adw-gtk3 (or adw-gtk3-dark).
+    ```bash
+    git clone https://github.com/luxingzhi27/matugen-autothemer.git ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
+    ```
 
-#### **4\. Configure Qt**
+2.  **Create the theme directory**:
 
-To ensure Qt apps use the generated colors, add the following environment variable to your /etc/environment or shell profile:
+    ```bash
+    mkdir -p ~/.local/share/themes/Material-You/gnome-shell/
+    ```
 
-```
-QT_QPA_PLATFORMTHEME=qt5ct
-```
+3.  **Compile Schemas**:
 
-And you also need to set the color scheme in qt5ct/qt6ct to "noctalia". To get the best experience, you can use the [darkly](https://github.com/Bali10050/Darkly) application style in qt5ct/qt6ct.
+    ```bash
+    cd ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
+    glib-compile-schemas schemas
+    ```
 
-#### **5\. Configure VScode**
-To ensure VScode uses the generated colors, you need to install the "HyprLuna Matugen Theme" extension and set the color theme to "Hyprluna".
+4.  **Restart GNOME Shell**: Log out and log back in (or press `Alt+F2`, type `r`, and hit Enter on X11).
+
+### **⚙️ Configuration (One-time Setup)**
+
+After installing the extension, you must configure your system to use the generated themes:
+
+1.  **Enable the Extension**: Open **Extension Manager** and enable "Matugen Auto-Themer".
+2.  **GNOME Tweaks**:
+      * **Shell Theme**: Select `Material-You` (Requires "User Themes" extension).
+      * **Legacy Applications**: Select `adw-gtk3` (or `adw-gtk3-dark`).
+3.  **Qt Setup**:
+      * Add `QT_QPA_PLATFORMTHEME=qt5ct` to your `/etc/environment`.
+      * Open `qt5ct` / `qt6ct` and set the color scheme to `noctalia`.
+4.  **Extension Preferences**:
+      * Go to the extension settings.
+      * Ensure "Matugen Executable Path" is correct (usually found automatically).
 
 ### **🚀 Usage**
 
-1. **Install the Extension**: Copy the repository to `~/.local/share/gnome-shell/extensions/` and rename it to `matugen-autothemer@material-you`.  
-2. **Compile Schemas**:  
-   ```
-   glib-compile-schemas schemas
-   ```
+  * **Change Wallpaper**: The system theme updates automatically.
+  * **Panel Menu**: Click the palette icon in the top bar to:
+      * Toggle Light/Dark mode.
+      * Change the Color Flavor (e.g., Tonal Spot, Fruit Salad).
+      * Force a theme regeneration.
 
-3. **Enable**: Restart GNOME Shell (Log out/in) and enable the extension.  
-4. **Customize**:  
-   * Use the **Panel Indicator** to toggle between Light/Dark mode.  
-   * Select your preferred **Color Flavor** (e.g., Tonal Spot, Vibrant, Fruit Salad).  
-   * Change your **Wallpaper**, and the entire system theme will update automatically\!
+-----
 
 ## **中文说明**
 
-**Matugen Auto-Themer** 是一个强大的 GNOME Shell 扩展，旨在为您的 Linux 桌面带来全局的 Material You (Material Design 3\) 动态配色体验。它会监听壁纸更换或明暗模式的切换，并自动调用 [Matugen](https://github.com/InioX/matugen) 生成并应用统一的配色方案。
-## **警告：matugen的版本至少为3.0.0!!!!!**
+**Matugen Auto-Themer** 是一个强大的 GNOME Shell 扩展，旨在为您的 Linux 桌面带来全局的 Material You (Material Design 3) 动态配色体验。它会监听壁纸更换或明暗模式的切换，并自动调用 [Matugen](https://github.com/InioX/matugen) 生成并应用统一的配色方案。部分配置参考自 [Noctalia Shell](https://github.com/noctalia-dev/noctalia-shell)。
 
-### 声明
-- matugen的部分模板和配置使用了[noctalia shell](https://github.com/noctalia-dev/noctalia-shell)的配置。
+### **⚠️ 依赖与版本要求**
 
+安装前请确保您的系统满足以下要求，**否则插件将无法运行**：
 
+| 依赖软件 | 说明 |
+| :--- | :--- |
+| **matugen(3.0.0或更高版本)** | **必须。** 核心配色生成工具，版本过低将报错。 |
+| **sassc** | **必须。** 用于编译 GNOME Shell 主题样式表。 |
+| **libjxl (djxl)**| **可选。** 仅当您使用 `.jxl` 格式壁纸时需要。 |
+| **adw-gtk3** | 用于统一传统 GTK 应用的样式。 |
+| **qt5ct / qt6ct**| 用于管理 Qt 应用样式。 |
 
 ### **🎨 自动配色范围**
 
-本插件不仅限于美化 GNOME Shell，它还可以根据配置文件为以下组件生成并应用主题：
+根据配置文件，本插件支持为以下组件生成主题：
 
-* **GNOME Shell**: 顶栏、快速设置面板、概览和弹出菜单的完整 Material You 配色。  
-* **GTK 4 & GTK 3**: 适配 Libadwaita 应用及传统 GTK 应用（依赖 adw-gtk3）。  
-* **Qt 5 & Qt 6**: 通过 qt5ct 和 qt6ct 应用配色。  
-* **终端模拟器**: Ghostty。  
-* **启动器**: Fuzzel, Walker。  
-* **常用应用**:  
-  * VSCode 和 Zed 编辑器  
-  * Firefox 浏览器 (需配合 Pywalfox)  
-  * Vicinae
+  * **GNOME Shell**: 顶栏、快速设置、概览等完整配色。
+  * **GTK 4 & GTK 3**: 适配 Libadwaita 及传统 GTK 应用。
+  * **Qt 5 & Qt 6**: 通过 qt5ct/qt6ct 适配。
+  * **其他工具**: Ghostty, Fuzzel, Walker, VSCode, Firefox (Pywalfox) 等。
 
-### **🛠️ 前置要求与设置（重要）**
+您也可以通过编辑配置文件 `~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/config.toml` 来进一步自定义配色范围。
 
-在启用插件之前，您必须手动完成以下步骤，以确保存储路径存在且主题能够被正确应用。
+### **📥 安装方法**
 
-#### **1\. 安装必要的依赖**
+#### **方法 1: 脚本自动安装（推荐）**
 
-请确保您的系统中已安装以下工具或主题：
+直接运行仓库中的安装脚本即可：
 
-* matugen (核心配色生成工具)  
-* sassc (用于编译 GNOME Shell 主题样式表)  
-* adw-gtk3 主题 (用于统一 GTK3 应用的样式)  
-* qt5ct 和 qt6ct (用于管理 Qt 应用样式)
-
-#### **2\. 创建 GNOME Shell 主题目录**
-
-插件会将编译好的 Shell 主题输出到本地主题目录，您需要手动创建该文件夹：
-
-```
-mkdir -p ~/.local/share/themes/Material/gnome-shell
+```bash
+chmod +x install.sh
+./install.sh
 ```
 
-#### **3\. 应用基础主题**
+#### **方法 2: 手动安装**
 
-打开 **GNOME Tweaks（优化）** 工具（或使用 gsettings）进行以下设置：
+1.  **克隆仓库**:
 
-1. **Shell 主题 (Shell Theme)**: 选择 Material（需要先启用 User Themes 扩展）。  
-2. **过时应用程序 (Legacy Applications)**: 选择 adw-gtk3（或 adw-gtk3-dark）。
+    ```bash
+    git clone https://github.com/luxingzhi27/matugen-autothemer.git ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
+    ```
 
-#### **4\. 配置 Qt 环境**
+2.  **创建主题目录**:
 
-为了让 Qt 应用读取生成的颜色配置，请将以下环境变量添加到您的 /etc/environment 或 Shell 配置文件中：
+    ```bash
+    mkdir -p ~/.local/share/themes/Material-You/gnome-shell/
+    ```
 
-```
-QT_QPA_PLATFORMTHEME=qt5ct
-```
+3.  **编译 Schema**:
 
-同时，您还需要在 qt5ct/qt6ct 中将配色方案设置为 "noctalia"。为了获得最佳体验，您可以在 qt5ct/qt6ct 中使用 [darkly](https://github.com/Bali10050/Darkly) 应用样式。
+    ```bash
+    cd ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
+    glib-compile-schemas schemas
+    ```
 
-#### **5\. 配置 VScode**
-为了让 VScode 使用生成的配色，您需要安装 "HyprLuna Matugen Theme" 扩展，并将配色主题设置为 "Hyprluna"。
+4.  **重启 GNOME Shell**: 注销并重新登录（X11 用户可按 `Alt+F2` 输入 `r` 回车）。
 
-### **🚀 使用方法**
+### **⚙️ 初始化配置**
 
-1. **安装扩展**: 将仓库内容复制到 `~/.local/share/gnome-shell/extensions/`并改名为`matugen-autothemer@material-you`。  
-2. 编译 Schema:  
-   进入扩展目录并运行：  
-   ```
-   glib-compile-schemas schemas
-   ```
+安装完成后，需要进行一次性设置以应用主题：
 
-3. **启用扩展**: 重启 GNOME Shell（注销并重新登录），然后在扩展管理器中启用它。  
-4. **个性化**:  
-   * 点击顶栏的 **Matugen 图标** 快速切换 明亮/暗黑 模式。  
-   * 在菜单中选择喜欢的 **配色风格 (Scheme type)**（如：Tonal Spot, Vibrant 等）。  
-   * **更换壁纸**，系统配色将即刻自动更新！
+1.  **启用扩展**: 在扩展管理器中启用 "Matugen Auto-Themer"。
+2.  **设置主题 (GNOME Tweaks)**:
+      * **Shell 主题**: 选择 `Material-You`（需先安装 User Themes 扩展）。
+      * **过时应用程序**: 选择 `adw-gtk3`。
+3.  **Qt 环境配置**:
+      * 在 `/etc/environment` 中添加 `QT_QPA_PLATFORMTHEME=qt5ct`。
+      * 在 `qt5ct`/`qt6ct` 中将配色方案设置为 `noctalia`。
+4.  **插件设置**:
+      * 打开插件首选项，确保 Matugen 的路径被正确识别。
+
+### **🚀 使用指南**
+
+  * **更换壁纸**: 系统配色将自动跟随更新。
+  * **顶栏菜单**: 点击顶栏的调色板图标可以：
+      * 快速切换 明亮/暗黑 模式。
+      * 选择喜欢的 **配色风格 (Scheme type)**（如 Tonal Spot, Vibrant 等）。
+      * 强制重新生成主题。

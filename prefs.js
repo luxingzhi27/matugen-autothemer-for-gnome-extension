@@ -4,127 +4,95 @@ import Gtk from 'gi://Gtk';
 import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 const FLAVORS = [
-    'tonal-spot',
-    'vibrant',
-    'expressive',
-    'fruit-salad',
-    'content',
-    'monochrome',
-    'neutral',
-    'rainbow',
-    'fidelity',
+    'tonal-spot', 'vibrant', 'expressive', 'fruit-salad',
+    'content', 'monochrome', 'neutral', 'rainbow', 'fidelity',
 ];
 
-const MODES = [
-    'dark',
-    'light',
-];
+const MODES = ['dark', 'light'];
 
 export default class MatugenPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
+        window.set_default_size(500, 400);
 
-        window.set_default_size(480, 360);
-
-        const generalPage = new Adw.PreferencesPage();
-        window.add(generalPage);
-
-        const integrationGroup = new Adw.PreferencesGroup({
-            title: 'Matugen Command',
-            description: 'Configure the executable, type, and optional config passed to matugen.',
+        const page = new Adw.PreferencesPage();
+        const group = new Adw.PreferencesGroup({
+            title: 'Matugen Configuration',
+            description: 'Configure how the extension interacts with the Matugen binary.',
         });
-        generalPage.add(integrationGroup);
 
+        page.add(group);
+        window.add(page);
+
+        // --- 1. 可执行文件路径 ---
         const pathRow = new Adw.EntryRow({
-            title: 'Matugen executable path',
+            title: 'Matugen Executable Path',
+            tooltip_text: 'Absolute path to the matugen binary',
         });
         settings.bind('matugen-path', pathRow, 'text', Gio.SettingsBindFlags.DEFAULT);
-        integrationGroup.add(pathRow);
+        group.add(pathRow);
 
+        // --- 2. 配置文件路径 ---
         const configRow = new Adw.EntryRow({
-            title: 'Matugen config path',
+            title: 'Config File Path',
+            tooltip_text: 'Optional path to a custom config.toml',
         });
         settings.bind('matugen-config', configRow, 'text', Gio.SettingsBindFlags.DEFAULT);
-        integrationGroup.add(configRow);
+        group.add(configRow);
 
-        const modeList = new Gtk.StringList();
-        for (const mode of MODES) {
-            modeList.append(mode);
-        }
-        const modeRow = new Adw.ComboRow({
-            title: 'Color mode',
-            subtitle: 'Run matugen in the selected light or dark mode.',
-            model: modeList,
-        });
-        const initialMode = settings.get_string('color-mode');
-        modeRow.set_selected(Math.max(0, MODES.indexOf(initialMode)));
-        modeRow.connect('notify::selected', row => {
-            const index = row.get_selected();
-            if (index >= 0 && index < MODES.length) {
-                settings.set_string('color-mode', MODES[index]);
-            }
-        });
-        const modeSignalId = settings.connect('changed::color-mode', () => {
-            const value = settings.get_string('color-mode');
-            const idx = MODES.indexOf(value);
-            if (idx >= 0) {
-                modeRow.set_selected(idx);
-            }
-        });
-        integrationGroup.add(modeRow);
+        // --- 3. 颜色模式选择 (ComboRow) ---
+        // 使用辅助函数创建下拉列表
+        this._createComboRow(group, settings, 'Color Mode', 'color-mode', MODES);
 
-        const flavorList = new Gtk.StringList();
-        for (const flavor of FLAVORS) {
-            flavorList.append(flavor);
-        }
-        const currentFlavor = settings.get_string('matugen-flavor');
-        let flavorIndex = FLAVORS.indexOf(currentFlavor);
-        if (flavorIndex === -1 && currentFlavor.length > 0) {
-            flavorList.append(currentFlavor);
-            flavorIndex = flavorList.get_n_items() - 1;
-        }
-        if (flavorIndex < 0) {
-            flavorIndex = 0;
-        }
+        // --- 4. 配色方案选择 (ComboRow) ---
+        this._createComboRow(group, settings, 'Scheme Type', 'matugen-flavor', FLAVORS);
+    }
 
-        const flavorRow = new Adw.ComboRow({
-            title: 'Scheme type',
-            subtitle: 'Value supplied to matugen --type.',
-            model: flavorList,
-            selected: flavorIndex,
+    /**
+     * 辅助函数：创建并绑定 ComboRow
+     * 自动处理 GSettings(String) 与 ComboRow(Index) 之间的映射
+     */
+    _createComboRow(group, settings, title, key, items) {
+        const model = new Gtk.StringList();
+        items.forEach(item => model.append(item));
+
+        const row = new Adw.ComboRow({
+            title: title,
+            model: model,
         });
-        flavorRow.connect('notify::selected', row => {
-            const index = row.get_selected();
-            if (index < 0) {
-                return;
-            }
-            const value = flavorList.get_string(index);
-            settings.set_string('matugen-flavor', value);
-        });
-        const flavorSignalId = settings.connect('changed::matugen-flavor', () => {
-            const updated = settings.get_string('matugen-flavor');
-            let idx = -1;
-            for (let i = 0; i < flavorList.get_n_items(); i++) {
-                if (flavorList.get_string(i) === updated) {
-                    idx = i;
-                    break;
+
+        // 初始值同步：Settings -> UI
+        const syncUi = () => {
+            const currentVal = settings.get_string(key);
+            let idx = items.indexOf(currentVal);
+            // 如果设置里的值不在列表中（比如手动修改过），添加进去或默认为0
+            if (idx === -1) {
+                if (currentVal) {
+                    // 简单处理：如果找不到就选第一个，防止 UI 异常
+                    idx = 0; 
+                } else {
+                    idx = 0;
                 }
             }
-            if (idx === -1 && updated.length > 0) {
-                flavorList.append(updated);
-                idx = flavorList.get_n_items() - 1;
-            }
-            if (idx >= 0) {
-                flavorRow.set_selected(idx);
+            row.set_selected(idx);
+        };
+
+        syncUi();
+
+        // 监听 UI 变化 -> 写回 Settings
+        row.connect('notify::selected', () => {
+            const idx = row.get_selected();
+            if (idx >= 0 && idx < items.length) {
+                settings.set_string(key, items[idx]);
             }
         });
 
-        window.connect('close-request', () => {
-            settings.disconnect(flavorSignalId);
-            settings.disconnect(modeSignalId);
-            // Return false to continue closing the window
-            return false; 
-        });
-        integrationGroup.add(flavorRow);
+        // 监听 Settings 变化 -> 更新 UI (处理外部修改)
+        const id = settings.connect(`changed::${key}`, syncUi);
+
+        // 确保销毁时断开信号
+        group.connect('destroy', () => settings.disconnect(id));
+
+        group.add(row);
     }
 }
