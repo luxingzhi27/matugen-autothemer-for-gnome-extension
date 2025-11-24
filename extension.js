@@ -151,7 +151,7 @@ export default class MatugenAutoThemer extends Extension {
 
     async _runWorkflow() {
         // 1. 每次运行前先检查 matugen 环境
-        if (!await this._checkMatugenRequirements()) {
+        if (!await this._checkRequirements()) {
             return;
         }
 
@@ -189,7 +189,8 @@ export default class MatugenAutoThemer extends Extension {
         this._applyInterfaceMode(mode);
     }
 
-    async _checkMatugenRequirements() {
+    async _checkRequirements() {
+        // 检查 matugen要求
         let matugenPath = this._settings.get_string('matugen-path');
 
         // 步骤 1: 检查可执行文件是否存在
@@ -228,6 +229,35 @@ export default class MatugenAutoThemer extends Extension {
             return true;
         } catch (e) {
             this._notifyError('Matugen Check Failed', `Error: ${e.message}`);
+        }
+
+        //检查 djxl,sassc是否存在
+        try {
+            const djxlPath = GLib.find_program_in_path('djxl');
+            if (!djxlPath) {
+                this._notifyError(
+                    'djxl not found', 
+                    'Please install libjxl to handle JXL images.'
+                );
+                return false;
+            }
+            return true;
+        } catch (e) {
+            this._notifyError('djxl Check Failed', `Error: ${e.message}`);
+        }
+
+        try {
+            const sasscPath = GLib.find_program_in_path('sassc');
+            if (!sasscPath) {
+                this._notifyError(
+                    'sassc not found', 
+                    'Please install sassc to compile theme stylesheets.'
+                );
+                return false;
+            }
+            return true;
+        } catch (e) {
+            this._notifyError('sassc Check Failed', `Error: ${e.message}`);
             return false;
         }
     }
