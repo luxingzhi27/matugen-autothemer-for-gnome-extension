@@ -33,34 +33,16 @@ You can customize the scope further by editing the configuration file located at
 
 ### **📥 Installation**
 
-#### **Method 1: Automatic Install (Recommended)**
+1.  **Download the latest release**:
+    Download the latest release from the [Releases page](https://github.com/luxingzhi27/matugen-autothemer-for-gnome-extension/releases).
 
-You can simply run the provided installation script:
+2.  **Extract the archive**:
+    Unzip the downloaded file and open a terminal in the extracted folder.
 
-```bash
-chmod +x install.sh
-./install.sh
-```
-
-#### **Method 2: Manual Install**
-
-1.  **Clone the repository**:
-
+3.  **Run the installation script**:
     ```bash
-    git clone https://github.com/luxingzhi27/matugen-autothemer.git ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
-    ```
-
-2.  **Create the theme directory**:
-
-    ```bash
-    mkdir -p ~/.local/share/themes/Material-You/gnome-shell/
-    ```
-
-3.  **Compile Schemas**:
-
-    ```bash
-    cd ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
-    glib-compile-schemas schemas
+    chmod +x install.sh
+    ./install.sh
     ```
 
 4.  **Restart GNOME Shell**: Log out and log back in (or press `Alt+F2`, type `r`, and hit Enter on X11).
@@ -120,34 +102,16 @@ After installing the extension, you must configure your system to use the genera
 
 ### **📥 安装方法**
 
-#### **方法 1: 脚本自动安装（推荐）**
+1.  **下载最新版本**:
+    从 [Releases 页面](https://github.com/luxingzhi27/matugen-autothemer-for-gnome-extension/releases) 下载最新版本。
 
-直接运行仓库中的安装脚本即可：
+2.  **解压文件**:
+    解压下载的压缩包，并在解压后的文件夹中打开终端。
 
-```bash
-chmod +x install.sh
-./install.sh
-```
-
-#### **方法 2: 手动安装**
-
-1.  **克隆仓库**:
-
+3.  **运行安装脚本**:
     ```bash
-    git clone https://github.com/luxingzhi27/matugen-autothemer.git ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
-    ```
-
-2.  **创建主题目录**:
-
-    ```bash
-    mkdir -p ~/.local/share/themes/Material-You/gnome-shell/
-    ```
-
-3.  **编译 Schema**:
-
-    ```bash
-    cd ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27
-    glib-compile-schemas schemas
+    chmod +x install.sh
+    ./install.sh
     ```
 
 4.  **重启 GNOME Shell**: 注销并重新登录（X11 用户可按 `Alt+F2` 输入 `r` 回车）。
