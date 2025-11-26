@@ -2,8 +2,8 @@
 contrast=4
 
 [General]
-ColorScheme=Matugen
-Name=noctalia
+ColorScheme=MaterialYou
+Name=MaterialYou
 
 [ColorEffects:Disabled]
 Color={{colors.surface_dim.default.hex}}
