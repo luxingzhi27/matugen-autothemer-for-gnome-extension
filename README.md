@@ -56,8 +56,8 @@ After installing the extension, you must configure your system to use the genera
       * **Shell Theme**: Select `Material-You` (Requires "User Themes" extension).
       * **Legacy Applications**: Select `adw-gtk3` (or `adw-gtk3-dark`).
 3.  **Qt Setup**:
-      * Add `QT_QPA_PLATFORMTHEME=qt5ct` to your `/etc/environment`.
-      * Open `qt5ct` / `qt6ct` and set the color scheme to `noctalia`.
+      * Add `QT_QPA_PLATFORMTHEME=qt5ct` to your `/etc/environment`(May cause issues when start plasma desktop, before you start plasma, you can unset it).
+      * Open `qt5ct` / `qt6ct` and set the color scheme to `MaterialYou`.
 4.  **Extension Preferences**:
       * Go to the extension settings.
       * Ensure "Matugen Executable Path" is correct (usually found automatically).
@@ -125,8 +125,8 @@ After installing the extension, you must configure your system to use the genera
       * **Shell 主题**: 选择 `Material-You`（需先安装 User Themes 扩展）。
       * **过时应用程序**: 选择 `adw-gtk3`。
 3.  **Qt 环境配置**:
-      * 在 `/etc/environment` 中添加 `QT_QPA_PLATFORMTHEME=qt5ct`。
-      * 在 `qt5ct`/`qt6ct` 中将配色方案设置为 `noctalia`。
+      * 在 `/etc/environment` 中添加 `QT_QPA_PLATFORMTHEME=qt5ct`(可能在启动 plasma 桌面时导致问题，启动 plasma 前可以取消该变量)。
+      * 在 `qt5ct`/`qt6ct` 中将配色方案设置为 `MaterialYou`。
 4.  **插件设置**:
       * 打开插件首选项，确保 Matugen 的路径被正确识别。
 

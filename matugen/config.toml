@@ -23,26 +23,22 @@ output_path = '~/.config/gtk-4.0/gtk.css'
 # 源 JSON 'qt' 块被拆分为 qt5 和 qt6
 [templates.qt5]
 input_path = './templates/qtct.conf'
-output_path = '~/.config/qt5ct/colors/noctalia.conf'
+output_path = '~/.config/qt5ct/colors/MaterialYou.conf'
 
 [templates.qt6]
 input_path = './templates/qtct.conf'
-output_path = '~/.config/qt6ct/colors/noctalia.conf'
+output_path = '~/.config/qt6ct/colors/MaterialYou.conf'
 
 # --- KColorScheme ---
 [templates.kcolorscheme]
 input_path = './templates/kcolorscheme.colors'
-output_path = '~/.local/share/color-schemes/noctalia.colors'
-
-# --- KDE ---
-[templates.KDE]
-input_path = './templates/kcolorscheme.colors'
-output_path = '~/.config/kdeglobals'
+output_path = '~/.local/share/color-schemes/MaterialYou.colors'
+post_hook = 'python3 ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/scripts/merge_kde_colors.py'
 
 # --- Fuzzel ---
 [templates.fuzzel]
 input_path = './templates/fuzzel.conf'
-output_path = '~/.config/fuzzel/themes/noctalia'
+output_path = '~/.config/fuzzel/themes/MaterialYou'
 post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/scripts/colors-apply.sh fuzzel'
 
 # --- Pywalfox ---
@@ -54,13 +50,13 @@ post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxin
 # --- Vicinae ---
 [templates.vicinae]
 input_path = './templates/vicinae.toml'
-output_path = '~/.local/share/vicinae/themes/matugen.toml'
+output_path = '~/.local/share/vicinae/themes/MaterialYou.toml'
 post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/scripts/colors-apply.sh vicinae'
 
 # --- Walker ---
 [templates.walker]
 input_path = './templates/walker.css'
-output_path = '~/.config/walker/themes/noctalia/style.css'
+output_path = '~/.config/walker/themes/MaterialYou/style.css'
 post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/scripts/colors-apply.sh walker'
 
 # --- VSCode ---
@@ -70,11 +66,12 @@ output_path = '~/.vscode/extensions/hyprluna.hyprluna-theme-1.0.2/themes/hyprlun
 
 [templates.zed]
 input_path = './templates/zed-colors.json'
-output_path = '~/.config/zed/themes/matugen.json'
+output_path = '~/.config/zed/themes/MaterialYou.json'
 
 [templates.ghostty]
 input_path = './templates/Terminal/ghostty'
-output_path = '~/.config/ghostty/themes/noctalia'
+output_path = '~/.config/ghostty/themes/MaterialYou'
+post_hook = 'bash ~/.local/share/gnome-shell/extensions/matugen-autothemer@luxingzhi27/matugen/scripts/colors-apply.sh ghostty'
 
 [templates.gnomeshell]
 input_path = './templates/gnome-shell-colors.scss'
